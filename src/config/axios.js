@@ -12,7 +12,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    xToken = localStorage.getItem("x-token");
+    let xToken = localStorage.getItem("x-token");
     if (xToken) {
       config.headers["Authorization"] = `Bearer ${xToken}`;
     }

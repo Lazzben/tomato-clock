@@ -1,0 +1,49 @@
+.todoitem {
+    display: flex;
+    align-items: center;
+    padding: 8px 0 8px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.todoitem:hover {
+    background: #f9f9f9;
+}
+
+.todoitem.editing {
+    background: #fff3d2;
+}
+
+.todoitem.completed>.text {
+    text-decoration: line-through;
+    color: #a9a9a9;
+}
+
+.todoitem:first-child {
+    border-top: 1px solid #ddd;
+}
+
+.todoitem>.editing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    flex: 1;
+}
+
+.todoitem>.text {
+    flex: 1;
+    padding: 0 0 0 8px;
+}
+
+.todoitem>.editing>input {
+    border: 0;
+    padding: 0;
+    outline: none;
+    background: transparent;
+}
+
+.todoitem>.editing>.iconWrapper>.icon {
+    margin-left: 4px;
+    color: #a9a9a9;
+    cursor: pointer;
+}

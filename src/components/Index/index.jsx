@@ -5,6 +5,8 @@ import axios from "../../config/axios";
 import { useNavigate } from "react-router-dom";
 import Todos from "../Todos/Todos";
 import "./index.css";
+import { initTodos } from "../../redux/actions";
+import { connect } from "react-redux";
 
 class Index extends React.Component {
   constructor(props) {
@@ -28,25 +30,32 @@ class Index extends React.Component {
         });
       })
       .catch((error) => {
-        if (error.response.status == 401) {
+        if (error.response.status === 401) {
           this.props.navigation("/login");
         }
         throw new Error(console.error());
       });
   }
 
+  async getTodos() {
+    await axios
+      .get("/todos")
+      .then((response) => this.props.initTodos(response.data.resources))
+      .catch((error) => {
+        throw new Error(error);
+      });
+  }
+
   componentDidMount() {
     this.getCurrentAccount();
+    this.getTodos();
   }
 
   menu() {
     return (
       <Menu key={11}>
         <Menu.Item>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a target="_blank" rel="noopener noreferrer">
             个人设置
           </a>
         </Menu.Item>
@@ -78,14 +87,28 @@ class Index extends React.Component {
           </Dropdown>
         </header>
         <main>
-          <Todos/>
+          <Todos />
         </main>
       </div>
     );
   }
 }
 
-export default function () {
+function IndexWrapper(props) {
   const navigation = useNavigate();
-  return <Index navigation={navigation} />;
+  return <Index navigation={navigation} {...props} />;
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    ...ownProps,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    initTodos: (payload) => dispatch(initTodos(payload)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndexWrapper);

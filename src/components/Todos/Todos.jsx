@@ -5,19 +5,17 @@ import { connect } from "react-redux";
 import { initTodos } from "../../redux/actions";
 import "./todos.css";
 
-class Todos extends React.Component {
-  render() {
-    return (
-      <div className="todos" id="todos">
-        <TodoInput createTodo={this.createTodo} />
-        <div className="todoitems" id="todoitems">
-          {this.props.todos.map((todo) => {
-            return <TodoItem key={todo.id} {...todo} />;
-          })}
-        </div>
+function Todos(props) {
+  return (
+    <div className="todos" id="todos">
+      <TodoInput />
+      <div className="todoitems" id="todoitems">
+        {props.todos.map((todo) => {
+          return <TodoItem key={todo.id} {...todo} />;
+        })}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 function mapStateToProps(state) {

@@ -1,0 +1,38 @@
+#tomatoslist {
+    margin-top: 16px;
+    border-top: 1px solid #ddd;
+}
+
+#tomatoslist>.dailytomato {
+    padding-top: 16px;
+}
+
+#tomatoslist>.dailytomato>.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+#tomatoslist>.dailytomato>.title>.date {
+    color: #999999;
+    font-size: 16px;
+}
+
+#tomatoslist>.dailytomato>.title>.finishedcount {
+    color: #666666;
+    font-size: 12px;
+}
+
+#tomatoslist>.dailytomato>.details>.tomatoitem {
+    font-size: 14px;
+}
+
+#tomatoslist>.dailytomato>.details>.tomatoitem>.time {
+    color: #999999;
+}
+
+#tomatoslist>.dailytomato>.details>.tomatoitem>.description {
+    margin-left: 8px;
+    color: #222222;
+}

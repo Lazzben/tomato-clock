@@ -1,0 +1,11 @@
+#tomatoinput > .inputWrapper {
+  position: relative;
+}
+
+#tomatoinput > .countdownwrapper {
+  position: relative;
+}
+
+#tomatoinput > .starttomatobtn {
+  width: 100%;
+}

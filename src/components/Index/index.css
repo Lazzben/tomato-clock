@@ -1,12 +1,20 @@
 #index {
     max-width: 1000px;
-    color: black;
+    margin: 0 auto;
 }
 
 #index > header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
+    padding: 16px 8px;
     border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+#index > main {
+    display: flex;
+    padding: 16px 0;
+    justify-content: space-between;
+    align-items: flex-start;
 }

@@ -5,8 +5,9 @@ import axios from "../../config/axios";
 import { useNavigate } from "react-router-dom";
 import Todos from "../Todos/Todos";
 import "./index.css";
-import { initTodos } from "../../redux/actions";
+import { initTodos, initTomatos } from "../../redux/actions";
 import { connect } from "react-redux";
+import Tomatos from "../Tomatos/Tomatos";
 
 class Index extends React.Component {
   constructor(props) {
@@ -46,20 +47,30 @@ class Index extends React.Component {
       });
   }
 
+  async getTomatos() {
+    await axios
+      .get("/tomatoes")
+      .then((response) => this.props.initTomatos(response.data.resources))
+      .catch((error) => {
+        throw new Error(error);
+      });
+  }
+
   componentDidMount() {
     this.getCurrentAccount();
     this.getTodos();
+    this.getTomatos();
   }
 
   menu() {
     return (
       <Menu key={11}>
-        <Menu.Item>
+        <Menu.Item key="shezhi">
           <a target="_blank" rel="noopener noreferrer">
             个人设置
           </a>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="logout">
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -87,6 +98,7 @@ class Index extends React.Component {
           </Dropdown>
         </header>
         <main>
+          <Tomatos />
           <Todos />
         </main>
       </div>
@@ -108,6 +120,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     initTodos: (payload) => dispatch(initTodos(payload)),
+    initTomatos: (payload) => dispatch(initTomatos(payload))
   };
 }
 
